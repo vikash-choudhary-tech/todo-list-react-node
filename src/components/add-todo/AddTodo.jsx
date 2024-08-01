@@ -1,19 +1,25 @@
 import { useState } from "react";
 import styles from "./AddTodo.module.css";
+import { addtodo } from "../services/service";
 
 const AddTodo = () => {
+
 const [task,setTask] = useState({
     title: "",
     id: null
 });
 
-function addNewTask(event){
+async function addNewTask(event){
     event.preventDefault();
     console.log("Form Submitted", event);
     setTask({
         title : "",
         id: null
     });
+
+ const response = await addtodo(task);
+ const jsonresposne = await response.json();
+ console.log("Response from server", jsonresposne);
 }
 
 return(
