@@ -8,3 +8,12 @@ export function addtodo(payload) {
     },
   });
 }
+
+export async function getTodo() {
+  return await fetch("http://localhost:8000/todo", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}

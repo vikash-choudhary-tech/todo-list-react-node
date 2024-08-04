@@ -14,8 +14,19 @@ app.use(
 
 const PORT = 8000;
 
+app.get("/todo", (req, res) => {
+  const reqQuery = `select * from person`;
+  database.queryDatabase(reqQuery).then((response) => {
+    console.log("Response from server", response);
+    res.json({
+      message: `Got the data from server`,
+      body: response,
+    });
+  });
+});
+
 app.post("/addtodo", (req, res) => {
-  const reqQuery = `INSERT INTO person (name, age, id) VALUES ('${req.body.title}', 21, 20);`;
+  const reqQuery = `INSERT INTO person (name, age) VALUES ('${req.body.title}', 21);`;
   database
     .queryDatabase(reqQuery)
     .then((response) => console.log("Response in index", response));
