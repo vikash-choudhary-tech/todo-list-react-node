@@ -1,25 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const database = require("./dbConnection");
 
 const app = express();
 app.use(bodyParser.json());
 
 app.use(
-  //   cors({
-  //     // origin: "http://localhost:3000",
-  //     // methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  //     // allowedHeaders: "Content-Type",
-  //   })
-  cors()
+  cors({
+    origin: "http://localhost:3306",
+  })
 );
 
 const PORT = 8000;
 
 app.post("/addtodo", (req, res) => {
-  const data = req.body;
-  console.log(data);
-  console.log("Req body", req.body.title);
+  const reqQuery = `INSERT INTO person (name, age, id) VALUES ('${req.body.title}', 21, 20);`;
+  database
+    .queryDatabase(reqQuery)
+    .then((response) => console.log("Response in index", response));
   res.json({
     message: `Updated the db with data ${req.body.title}`,
     body: req.body,
