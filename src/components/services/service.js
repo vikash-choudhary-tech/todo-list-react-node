@@ -17,3 +17,12 @@ export async function getTodo() {
     },
   });
 }
+
+export async function deleteTodo(itemId) {
+  return await fetch(`http://localhost:8000/deleteTodo/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
