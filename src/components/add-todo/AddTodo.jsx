@@ -26,7 +26,7 @@ return(
 <>
     <div className={styles.container}>
         <div className={styles.header}>
-            Add Your Task
+            {/* Add Your Task */}
         </div>
         <form className={styles.formContainer} onSubmit={addNewTask}>
             <div className={styles.formGroup}>

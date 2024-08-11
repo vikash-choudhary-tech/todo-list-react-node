@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    border : 1px solid black;
+    margin: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+
+}
+
+.listItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.listItem > button{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: lightblue;
+    cursor: pointer;
+
+}
