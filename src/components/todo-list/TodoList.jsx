@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import AddTodo from "../add-todo/AddTodo";
 import { deleteTodo, getTodo } from "../services/service";
 import styles from "./TodoList.module.css";
+import EditTodo from "../edit-todo/EditTodo";
 
 const TodoList = () =>
 {
 
 const [todos,setTodos] = useState([]);
+const [isEditable, setIsEditable] = useState(false);
+const [selectedItem, setSelectedItem] = useState();
 
 useEffect(()=>{
 fetchTodos();
@@ -23,6 +26,14 @@ async function deleteItem(id){
    console.log(response);
 }
 
+function editItem(item){
+    if(item)
+    setIsEditable(true);
+    else setIsEditable(false)
+    setSelectedItem(item);
+}
+
+
 return(
 todos &&
 <>
@@ -34,12 +45,18 @@ todos &&
     <ul className={styles.list}>
     {todos.map((item,index)=>(
             <li key={index} className={styles.listItem}>{item.name} &nbsp; &nbsp; 
+            <button onClick={()=> editItem(item)}>Edit</button>
             <button onClick={() => deleteItem(item.id)}>Delete</button>
             </li>
     ))}
     </ul>
 
+    {isEditable && <EditTodo person = {selectedItem} />}
+
  </div>
+
+
+
 </>)
 }
 

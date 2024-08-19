@@ -25,6 +25,16 @@ app.get("/todo", (req, res) => {
   });
 });
 
+app.get("/todo/:id", (req, res) => {
+  const reqQuery = `select * from person where id = ${req.params.id}`;
+  database.queryDatabase(reqQuery).then((response) => {
+    res.json({
+      message: "Got data from server",
+      body: response,
+    });
+  });
+});
+
 app.post("/addtodo", (req, res) => {
   const reqQuery = `INSERT INTO person (name, age) VALUES ('${req.body.title}', 21);`;
   database.queryDatabase(reqQuery).then((response) => {

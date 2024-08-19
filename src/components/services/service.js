@@ -26,3 +26,7 @@ export async function deleteTodo(itemId) {
     },
   });
 }
+
+export async function getTodoById(id) {
+  return await fetch(`http://localhost:8000/todo/${id}`);
+}
